@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de recuperación</title>
+    <link rel="stylesheet" href="../css/formStyles.css">
+</head>
+<body>
+    <form id="formRecuperacion" novalidate>
+        <h2>Formulario de recuperación</h2>
+
+        <label for="correo">Correo electrónico:</label>
+        <input 
+            type="email" 
+            id="correo" 
+            name="correo"
+            placeholder="correo@ejemplo.com"
+            required
+        >
+        <span class="mensaje" id="error-correo"></span>
+
+        <label>Pregunta de recuperación:</label>
+        <p id="preguntaTexto"></p>
+        <span class="mensaje" id="error-pregunta"></span>
+
+        <label>Respuesta:</label>
+        <input 
+            type="text" 
+            id="respuestaRecuperacion"
+            required
+        >
+
+        <label for="nuevaPassword">Nueva contraseña:</label>
+        <input 
+            type="password" 
+            id="nuevaPassword" 
+            name="nuevaPassword"
+            minlength="8"
+            placeholder="Mínimo 8 caracteres"
+            required
+        >
+        <span class="mensaje" id="error-password"></span>
+
+        <div class="btnContainer">
+            <button type="submit" class="submit">Recuperar</button>
+            <button type="reset" class="reset">Limpiar</button>
+            <button type="button" class="reset" onclick="history.back()"> Regresar</button>
+        </div>
+        
+    </form>
+
+    <pre id="resultado"></pre>
+
+    
+    <script type="module" src="../js/validateRecuperacion.js"></script>
+    <div id="modal" class="modal">
+    <div class="modal-content">
+        <span id="cerrarModal">&times;</span>
+        <p id="modalMensaje"></p>
+    </div>
+    </div>    
+</body>
+</html>
