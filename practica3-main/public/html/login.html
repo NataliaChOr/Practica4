@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/formStyles.css">
+</head>
+<body>
+
+<form id="formLogin">
+    <script type="module" src="../js/login.js"></script>
+    <h2>Inicio de sesión</h2>
+
+    <label>Correo:</label>
+    <input type="email" id="correo" required>
+
+    <label>Contraseña:</label>
+    <input type="password" id="password" required>
+
+    <p class="texto-login">
+        ¿No tienes una cuenta?
+        <a href="formVIJS.html">Regístrate</a>
+    </p>
+
+    <p class="texto-login">
+        ¿Olvidaste tu contraseña?
+        <a href="recuperacionCuenta.html">Recuperar</a>
+    </p>
+
+    <div class="btnContainer">
+        <button type="submit" class="submit">Ingresar</button>
+        <button type="reset" class="reset">Limpiar</button>       
+    </div>
+</form>
+
+<pre id="resultado"></pre>
+
+<script src="../js/login.js"></script>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="cerrarModal">&times;</span>
+    <p id="modalMensaje"></p>
+  </div>
+</div>
+
+</body>
+</html>

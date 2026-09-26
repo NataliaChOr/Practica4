@@ -1,0 +1,26 @@
+[
+  {
+    "email": "test8@test.com",
+    "password": "1231231232",
+    "pregunta": "mascota",
+    "respuesta": "perro"
+  },
+  {
+    "email": "jesPeralta@gmail.com",
+    "password": "123456789",
+    "pregunta": "escuela",
+    "respuesta": "primaria"
+  },
+  {
+    "email": "david@gmail.com",
+    "password": "123456789",
+    "pregunta": "mascota",
+    "respuesta": "chicken"
+  },
+  {
+    "email": "cris@gmail.com",
+    "password": "123456789",
+    "pregunta": "mascota",
+    "respuesta": "gato"
+  }
+]
