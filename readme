@@ -1,0 +1,21 @@
+# Practica final
+
+## Integrantes 
+Chávez Ortega Natalia
+Garcia Rule Veronica Emilia  
+Mateos Andrea Salazar
+
+### Pasos a realizar
+-> Considerar la base de datos ya programada de usuarios e incorpore en el modelo y programación el requisito de rol de usuario (administrador u operativo)
+-> Considerar la API ya programada que implementa servicios sobre los datos de la base de datos de usuarios.
+-> Programar en React los formularios de registro de usuarios e inicio de sesión de prácticas anteriores.
+-> Implementar JWT para el inicio de sesión y seguimiento posterior en las interfaces después del inicio de sesión.
+-> Programar una nueva interfaz en React para mostrar como galería de tarjetas o programar tablero que muestre todos los usuarios registrados en la BD y permita editar datos o eliminar  usuarios (programar las interfaces necesarias). Considere implementar una eliminación lógica de los registros y no una eliminación física. Los usuarios con el rol de operativo solo pueden modificar sus propios datos. Los usuarios con rol de administrador pueden modificar datos de cualquier usuario y eliminar a cualquier usuario.
+-> Proponer una estructura de directorios para el proyecto que refleje una arquitectura limpia. Si considera integrar en el mismo proyecto el frontend y el backend debe quedar clara la separación en la estructura de directorios.
+-> Desplegar el proyecto en la plataforma Vercel.
+
+#### Reto equipo de tres integrantes
+         a.   Recuperar usuarios eliminados a partir de una lista o tablero.
+         b.   Si implementaron la galería de tarjetas implementar el tablero de edición o                     viceversa. (obligatorio para equipos de más de 4 integrantes)
+         c.   Implementar el cierre de sesión e invalidación del token generado.
+
