@@ -45,21 +45,26 @@ export const getByEmail = async (correo) => {
 };
 
 export const loginSQL = async (correo, contrasena) => {
-  const pool = await getConnection();
+  try {
+    const pool = await getConnection();
+    if (!pool) return null;
 
-  const result = await pool.request()
-    .input('correo', correo)
-    .input('contrasena', contrasena)
-    .query(`
-      SELECT *
-      FROM users
-      WHERE correo = @correo
-      AND contrasena = @contrasena
-    `);
+    const result = await pool.request()
+      .input('correo', correo)
+      .input('contrasena', contrasena)
+      .query(`
+        SELECT *
+        FROM users
+        WHERE correo = @correo
+        AND contrasena = @contrasena
+      `);
 
-  return result.recordset[0] || null;
+    return result.recordset[0] || null;
+  } catch (error) {
+    console.error("Error en loginSQL:", error);
+    return null;
+  }
 };
-
 export const getPreguntaByEmail = async (correo) => {
   const pool = await getConnection();
 

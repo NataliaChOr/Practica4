@@ -79,10 +79,11 @@ export const loginUser = async (email, password) => {
   try {
     const users = await readUsers();
 
-    const user = users.find(
+ const user = users.find(
       (u) =>
-        u.email.trim().toLowerCase() === email.trim().toLowerCase() &&
-        u.password === password
+        (u.email || u.correo).trim().toLowerCase() === email.trim().toLowerCase() &&
+        (u.password || u.contrasena) === password &&
+        (u.activo === undefined || u.activo === 1 || u.activo === true)
     );
 
     return user || null;

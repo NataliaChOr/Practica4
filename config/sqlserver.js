@@ -11,19 +11,21 @@ dotenv.config();
 export const sqlServerConfig = {
   user: process.env.SQLSERVER_USER,
   password: process.env.SQLSERVER_PASSWORD,
-  server: process.env.SQLSERVER_SERVER,
+ server: 'localhost',
   database: process.env.SQLSERVER_DB,
+  port: 1433,
   options: {
     encrypt: false,
     trustServerCertificate: true,
-    nameInstance:'SQLEXPRESS'
   },
 };
 
 export const getConnection = async () => {
   try {
-    return await sql.connect(sqlServerConfig);
+    const pool = await sql.connect(sqlServerConfig);
+    return pool;
   } catch (error) {
     console.error('SQL Server connection error:', error);
+    throw error;
   }
 };

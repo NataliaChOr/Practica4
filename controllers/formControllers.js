@@ -6,7 +6,15 @@
  *   3. Llamar a servicios para procesar datos, si es el caso.
  *   4. Devolver respuesta al cliente. 
  */
-import { updatePassword } from "../models/usuarios.js";
+import jwt from "jsonwebtoken";
+import { 
+  updatePassword, 
+  createUser, 
+  loginUser, 
+  findUserByEmail 
+} from "../models/usuarios.js";
+
+const JWT_SECRET = "mi_clave_secreta_123";
 
 export const recuperarPassword = async (req, res) => {
   const { correo, respuesta, nuevaPassword } = req.body;
@@ -27,9 +35,6 @@ export const recuperarPassword = async (req, res) => {
 
   res.json({ msg: "Contraseña actualizada correctamente" });
 };
-
-
-import { createUser } from "../models/usuarios.js";
 
 export const registrarUsuario = async (req, res) => {
   const { correo, password, pregunta, respuesta } = req.body;
@@ -52,14 +57,12 @@ export const registrarUsuario = async (req, res) => {
   res.json({ msg: "Usuario registrado correctamente" });
 };
 
-import { loginUser } from "../models/usuarios.js";
-
 export const login = async (req, res) => {
   const { correo, password } = req.body;
 
   if (!correo || !password) {
     return res.json({ 
-      success: false,
+      success: false, 
       msg: "Faltan datos" 
     });
   }
@@ -68,25 +71,38 @@ export const login = async (req, res) => {
 
   if (!user) {
     return res.json({ 
-      success: false,
+      success: false, 
       msg: "Correo o contraseña incorrectos" 
     });
   }
 
+  // 1. Generar el token JWT
+  const token = jwt.sign(
+    { 
+      id: user.id, 
+      correo: user.correo || user.email, 
+      rol: user.rol || 'operativo' 
+    },
+    JWT_SECRET,
+    { expiresIn: '4h' }
+  );
+
+  // 2. Guardar en la sesión (agregando el rol)
   req.session.user = {
     id: user.id,
     correo: user.correo || user.email,
-    nombre: user.nombre || user.email || user.correo
+    nombre: user.nombre || user.email || user.correo,
+    rol: user.rol || 'operativo'
   };
 
+  // 3. Responder enviando el token
   res.json({ 
     success: true,
     msg: "Inicio de sesión exitoso",
+    token: token,
     redirect: "/bienvenida"
   });
 };
-
-import { findUserByEmail } from "../models/usuarios.js";
 
 export const obtenerPregunta = async (req, res) => {
   const { correo } = req.body;
