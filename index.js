@@ -18,7 +18,7 @@
  *      
  *   Thunderclient 
  */
-
+import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -34,6 +34,7 @@ console.log('PORT leído:', process.env.PORT);
 
 const app = express();
 
+app.use(cors());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
