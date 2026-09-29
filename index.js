@@ -55,9 +55,14 @@ app.use(session({
 // Archivos estáticos
 app.use('/', express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+  console.log('PETICIÓN ENTRANTE:', req.method, req.url);
+  next();
+});
+
 // Rutas API
-app.use('/api', formRoutes);
-app.use('/api', apiRoutes);
+app.use('/form', formRoutes); // Ahora estarían en http://localhost:5000/form/login
+app.use('/api',  apiRoutes);  // Esta se queda en http://localhost:5000/api/login (la correcta)
 
 // Vista bienvenida protegida
 app.get('/bienvenida', (req, res) => {
